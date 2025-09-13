@@ -535,6 +535,8 @@ print(f"Summary -> ...")`;
               </div>
             ))}
           </div>
+          
+          <ChatDock open={chatOpen} onClose={onCloseChat} />
         </section>
       </div>
     </div>
