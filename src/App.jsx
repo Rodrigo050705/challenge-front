@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { Card, Pill } from "./components/UI";
-import logo from "./assets/logo_henryAI.png";
+import logo from "./assets/logo_henryAI_v2.png";
 
 // -------------------- chat dock (in-page) --------------------
 function ChatDock({ open, onClose }) {
