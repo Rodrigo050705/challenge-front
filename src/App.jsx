@@ -1,5 +1,6 @@
 // src/App.jsx
 import React, { useMemo, useState, useEffect } from "react";
+import logo from "./assets/logo.png";
 import { useNavigate, Link } from "react-router-dom";
 import { Settings, MessageSquare, ChevronRight, Search, X, Send } from "lucide-react";
 import { LogOut } from "lucide-react";
@@ -11,28 +12,32 @@ function ChatDock({ open, onClose }) {
   if (!open) return null;
   return (
     <div className="mt-8 border-t border-neutral-800 pt-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="text-sm text-sky-300 font-semibold">Chat com a IA</div>
+        <button onClick={onClose} className="p-1 rounded hover:bg-white/5" aria-label="Fechar chat">
+          <X size={18} className="text-gray-400" />
+        </button>
+      </div>
+
       <div className="text-sm text-gray-300 mb-3">
         Oi! Recebi o código que você precisa de ajuda! O código diz respeito a uma soma de array.
       </div>
-      <div className="text-sm text-gray-300 mb-1">
-        Como posso te ajudar?
-      </div>
+      <div className="text-sm text-gray-300 mb-1">Como posso te ajudar?</div>
+
       <div className="flex items-center gap-2">
         <input
           type="text"
           placeholder="Digite sua mensagem..."
           className="flex-1 bg-neutral-900 border border-gray-700 rounded-lg px-3 py-3 outline-none focus:border-sky-400"
         />
-        <button
-          className="p-3 rounded-lg border border-sky-700/40 bg-sky-900/30 hover:bg-sky-900/50 text-sky-200"
-          title="Enviar"
-        >
+        <button className="p-3 rounded-lg border border-sky-700/40 bg-sky-900/30 hover:bg-sky-900/50 text-sky-200" title="Enviar">
           <Send size={18} />
         </button>
       </div>
     </div>
   );
 }
+
 
 
 
@@ -122,9 +127,7 @@ function RepoSelect({ onSelect, onOpenChat, chatOpen, onCloseChat }) {
     <div className="min-h-screen bg-neutral-950 text-gray-100">
       {/* Header escuro do mock */}
       <header className="h-16 border-b border-neutral-800 px-6 flex items-center justify-between">
-        <div className="flex items-center gap-2 font-semibold">
-          <div className="w-5 h-5 rounded bg-sky-400/30 border border-sky-500/30" />
-          <span className="text-sky-300">Henry.AI</span>
+        <div className="flex items-center gap-2 font-semibold"><img src={logo} alt="Henry.AI" className="h-10 object-contain" />
         </div>
         <div className="flex items-center gap-3 text-sm">
           <span className="text-gray-300">Olá, <strong className="font-semibold">{username}</strong></span>
@@ -304,9 +307,7 @@ print(f"Summary -> ...")`;
 
   const Header = (
     <header className="h-16 border-b border-neutral-800 px-6 flex items-center justify-between">
-      <div className="flex items-center gap-2 font-semibold">
-        <div className="w-5 h-5 rounded bg-sky-400/30 border border-sky-500/30" />
-        <span className="text-sky-300">Henry.AI</span>
+      <div className="flex items-center gap-2 font-semibold"><img src={logo} alt="Henry.AI" className="h-10 object-contain" />
       </div>
 
       <div className="flex items-center gap-2">
@@ -343,6 +344,31 @@ print(f"Summary -> ...")`;
       </div>
     </header>
   );
+  const ActionsBar = (
+    <div className="px-6 pt-4">
+      <div className="flex flex-wrap gap-3">
+        <button
+          className="text-sm font-semibold rounded border border-sky-700/40 bg-sky-900/30 hover:bg-sky-900/50 text-sky-200 px-3 py-2"
+          onClick={onOpenChat}
+        >
+          USAR ESSE REPOSITÓRIO NO CHAT
+        </button>
+        <button
+          className="text-sm font-semibold rounded border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 text-gray-100 px-3 py-2"
+          onClick={() => setMode("analyze")}
+        >
+          ANALISAR NOVO CÓDIGO
+        </button>
+        <button
+          className="text-sm font-semibold rounded border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 text-gray-100 px-3 py-2"
+          onClick={() => alert("Gerar testes")}
+        >
+          GERAR TESTES
+        </button>
+      </div>
+    </div>
+  );
+
 
   const Sidebar = (
     <aside className="rounded-2xl bg-neutral-900/40 border border-neutral-800 p-2 flex flex-col gap-1">
@@ -369,7 +395,8 @@ print(f"Summary -> ...")`;
     return (
       <div className="min-h-screen bg-neutral-950 text-gray-100">
         {Header}
-        <div className="grid grid-cols-[260px_1fr] gap-6 px-6 py-6">
+        {ActionsBar}
+        <div className="grid grid-cols-[260px_1fr] gap-6 px-6 py-4">
           {Sidebar}
 
           <section className="rounded-2xl bg-neutral-900/40 border border-neutral-800 p-5">
@@ -402,7 +429,7 @@ print(f"Summary -> ...")`;
                 Resumo rápido criado com base na análise feita pela IA.
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-3">
+              <div className="hidden mt-4 flex flex-wrap gap-3">
                 <button
                   className="text-sm font-semibold rounded border border-sky-700/40 bg-sky-900/30 hover:bg-sky-900/50 text-sky-200 px-3 py-2"
                   onClick={() => alert("Abrir chat com repo selecionado")}
@@ -460,8 +487,8 @@ print(f"Summary -> ...")`;
   return (
     <div className="min-h-screen bg-neutral-950 text-gray-100">
       {Header}
-
-      <div className="grid grid-cols-[260px_1fr] gap-6 px-6 py-6">
+      {ActionsBar}
+      <div className="grid grid-cols-[260px_1fr] gap-6 px-6 py-4">
         {Sidebar}
 
         <section className="rounded-2xl bg-neutral-900/40 border border-neutral-800 p-5">

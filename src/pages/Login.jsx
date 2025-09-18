@@ -1,5 +1,6 @@
 // src/pages/Login.jsx
 import React from "react";
+import logo from "../assets/logo.png";
 
 const cx = (...c) => c.filter(Boolean).join(" ");
 
@@ -43,9 +44,7 @@ export default function Login() {
       <div className="w-full max-w-2xl rounded-2xl border bg-neutral-950 text-white shadow-xl p-10 border-gray-800">
         {/* header (igual ao mock) */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 text-sky-300 font-semibold">
-            <div className="w-2 h-2 rounded-full bg-sky-300" />
-            <span>Henry.AI</span>
+          <div className="inline-flex items-center gap-2 text-sky-300 font-semibold"><img src={logo} alt="Henry.AI" className="h-20 object-contain" />
           </div>
           <h2 className="text-3xl md:text-4xl font-extrabold mt-3">
             {step === 3 ? "Estamos quase lá!" : "Iniciando seu registro..."}
