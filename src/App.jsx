@@ -325,12 +325,15 @@ print(f"Summary -> ...")`;
             Voltar para resumo
           </button>
         ) : (
-          <button
-            className="text-xs font-medium border border-sky-700/40 bg-sky-900/30 hover:bg-sky-900/50 text-sky-200 rounded px-3 py-2"
-            onClick={() => alert("Gerar documentação em PDF")}
+          <a
+            href="../public/documentacao_tecnica_legacy_ai.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-medium border border-sky-700/60 bg-sky-900/30 hover:bg-sky-900/50 text-sky-200 rounded px-3 py-2"
           >
             DOCUMENTAÇÃO EM PDF
-          </button>
+          </a>
+
         )}
         <div className="mx-2 w-px h-5 bg-neutral-800" />
         <span className="text-sm text-gray-300">
